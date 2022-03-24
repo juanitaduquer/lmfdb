@@ -110,7 +110,7 @@ def by_label(label):
         "shimcurve.html",
         curve=curve,
         properties=curve.properties,
-        friends=curve.friends,
+        # friends=curve.friends,
         bread=curve.bread,
         title=curve.title,
         downloads=curve.downloads,
@@ -155,7 +155,7 @@ def shimcurve_jump(info):
 
 shimcurve_columns = SearchColumns([
     LinkCol("label", "shimcurve.label", "Label", url_for_shimcurve_label, default=True),
-    ProcessedCol("name", "shimcurve.name", "Name", lambda s: name_to_latex(s) if s else "", align="center", default=True),
+    # ProcessedCol("name", "shimcurve.name", "Name", lambda s: name_to_latex(s) if s else "", align="center", default=True),
     MathCol("level", "shimcurve.level", "Level", default=True),
     # MathCol("index", "shimcurve.index", "Index", default=True),
     MathCol("genus", "shimcurve.genus", "Genus", default=True),
