@@ -94,6 +94,7 @@ class WebShimCurve(WebObj):
             ("Level", str(self.level)),
             ("Discriminant", str(self.disc)),
             ("Genus", str(self.genus)),
+            ("Atkin Lehner", str(self.atkin_lehner)),
         ]
         return props
 
@@ -106,7 +107,7 @@ class WebShimCurve(WebObj):
     @lazy_attribute
     def bread(self):
         tail = []
-        A = ["level", "disc", "genus"]
+        A = ["disc", "level", "genus"]
         D = {}
         for a in A:
             D[a] = getattr(self, a)
