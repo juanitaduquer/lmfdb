@@ -156,7 +156,7 @@ def shimcurve_jump(info):
 shimcurve_columns = SearchColumns([
     LinkCol("label", "shimcurve.label", "Label", url_for_shimcurve_label, default=True),
     # ProcessedCol("name", "shimcurve.name", "Name", lambda s: name_to_latex(s) if s else "", align="center", default=True),
-    MathCol("discriminant", "shimcurve.disc", "Discriminant", default=True),
+    MathCol("disc", "shimcurve.disc", "Discriminant", default=True),
     MathCol("level", "shimcurve.level", "Level", default=True),
     MathCol("atkin_lehner", "shimcurve.atkin_lehner", "Atkin Lehner", default=True),
     # MathCol("index", "shimcurve.index", "Index", default=True),
