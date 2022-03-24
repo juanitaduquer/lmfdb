@@ -156,7 +156,9 @@ def shimcurve_jump(info):
 shimcurve_columns = SearchColumns([
     LinkCol("label", "shimcurve.label", "Label", url_for_shimcurve_label, default=True),
     # ProcessedCol("name", "shimcurve.name", "Name", lambda s: name_to_latex(s) if s else "", align="center", default=True),
+    MathCol("discriminant", "shimcurve.disc", "Discriminant", default=True),
     MathCol("level", "shimcurve.level", "Level", default=True),
+    MathCol("atkin_lehner", "shimcurve.atkin_lehner", "Atkin Lehner", default=True),
     # MathCol("index", "shimcurve.index", "Index", default=True),
     MathCol("genus", "shimcurve.genus", "Genus", default=True),
     # ProcessedCol("rank", "shimcurve.rank", "Rank", lambda r: "" if r is None else r, default=lambda info: info.get("rank") or info.get("genus_minus_rank"), align="center", mathmode=True),
@@ -253,7 +255,7 @@ class ShimCurveSearchArray(SearchArray):
             min_width=85)
         discriminant = TextBox(
             name="discriminant",
-            knowl="shimcurve.discriminant",
+            knowl="shimcurve.disc",
             label="Discriminant",
             example="1",
             example_span="0, 2-3",
