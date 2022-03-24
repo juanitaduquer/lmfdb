@@ -112,7 +112,8 @@
     - title: Calabi-Yau varieties
       status: future
     - title: Shimura varieties
-      status: future
+      status: beta
+      url_for: "shimura.index"
       colspan: onecolumn
     - title: Abelian varieties over $\F_{q}$
       url_for: "abvarfq.abelian_varieties"
