@@ -202,6 +202,7 @@ def shimcurve_search(info, query):
     #             query['level'] = {'$in': integer_divisors(ZZ(query['level']))}
     # parse_ints(info, query, "index")
     parse_ints(info, query, "genus")
+    parse_ints(info, query, "disc")
     # parse_ints(info, query, "rank")
     # parse_ints(info, query, "genus_minus_rank")
     # parse_ints(info, query, "cusps")
