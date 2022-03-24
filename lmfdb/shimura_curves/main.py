@@ -233,7 +233,7 @@ def shimcurve_search(info, query):
     #         raise ValueError(msg % info["covered_by"])
     #     query["label"] = {"$in": parents}
 
-class shimcurveSearchArray(SearchArray):
+class ShimCurveSearchArray(SearchArray):
     noun = "curve"
     plural_noun = "curves"
     jump_example = "X(D,N)"
@@ -343,7 +343,7 @@ class ShimCurve_stats(StatsDisplay):
 @shimcurve_page.route("/Q/stats")
 def statistics():
     title = 'Shimura curves: Statistics'
-    return render_template("display_stats.html", info=shimcurve_stats(), title=title, bread=get_bread('Statistics'), learnmore=learnmore_list())
+    return render_template("display_stats.html", info=ShimCurve_stats(), title=title, bread=get_bread('Statistics'), learnmore=learnmore_list())
 
 @shimcurve_page.route("/Source")
 def how_computed_page():
