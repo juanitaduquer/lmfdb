@@ -183,21 +183,21 @@ shimcurve_columns = SearchColumns([
 )
 def shimcurve_search(info, query):
     parse_ints(info, query, "level")
-    if info.get('level_type'):
-        if info['level_type'] == 'prime':
-            query['num_bad_primes'] = 1
-            query['level_is_squarefree'] = True
-        elif info['level_type'] == 'prime_power':
-            query['num_bad_primes'] = 1
-        elif info['level_type'] == 'squarefree':
-            query['level_is_squarefree'] = True
-        elif info['level_type'] == 'divides':
-            if not isinstance(query.get('level'), int):
-                err = "You must specify a single level"
-                flash_error(err)
-                raise ValueError(err)
-            else:
-                query['level'] = {'$in': integer_divisors(ZZ(query['level']))}
+    # if info.get('level_type'):
+    #     if info['level_type'] == 'prime':
+    #         query['num_bad_primes'] = 1
+    #         query['level_is_squarefree'] = True
+    #     elif info['level_type'] == 'prime_power':
+    #         query['num_bad_primes'] = 1
+    #     elif info['level_type'] == 'squarefree':
+    #         query['level_is_squarefree'] = True
+    #     elif info['level_type'] == 'divides':
+    #         if not isinstance(query.get('level'), int):
+    #             err = "You must specify a single level"
+    #             flash_error(err)
+    #             raise ValueError(err)
+    #         else:
+    #             query['level'] = {'$in': integer_divisors(ZZ(query['level']))}
     # parse_ints(info, query, "index")
     parse_ints(info, query, "genus")
     # parse_ints(info, query, "rank")
