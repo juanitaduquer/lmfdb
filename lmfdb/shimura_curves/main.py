@@ -157,7 +157,7 @@ shimcurve_columns = SearchColumns([
     LinkCol("label", "shimcurve.label", "Label", url_for_shimcurve_label, default=True),
     ProcessedCol("name", "shimcurve.name", "Name", lambda s: name_to_latex(s) if s else "", align="center", default=True),
     MathCol("level", "shimcurve.level", "Level", default=True),
-    # MathCol("index", "shimcurve.index", "Index", default=True),
+    MathCol("index", "shimcurve.index", "Index", default=True),
     MathCol("genus", "shimcurve.genus", "Genus", default=True),
     # ProcessedCol("rank", "shimcurve.rank", "Rank", lambda r: "" if r is None else r, default=lambda info: info.get("rank") or info.get("genus_minus_rank"), align="center", mathmode=True),
     # ProcessedCol("gonality_bounds", "shimcurve.gonality", "$K$-gonality", lambda b: r'$%s$'%(b[0]) if b[0] == b[1] else r'$%s \le \gamma \le %s$'%(b[0],b[1]), align="center", default=True),
