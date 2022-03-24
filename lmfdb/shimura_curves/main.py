@@ -168,7 +168,7 @@ shimcurve_columns = SearchColumns([
     # CheckCol("simple", "shimcurve.simple", "Simple"),
     # CheckCol("semisimple", "shimcurve.semisimple", "Semisimple"),
     # CheckCol("contains_negative_one", "shimcurve.contains_negative_one", "Contains -1", short_title="contains -1"),
-    CheckCol("plane_model", "shimcurve.plane_model", "Model"),
+    # CheckCol("plane_model", "shimcurve.plane_model", "Model"),
     # ProcessedCol("dims", "shimcurve.decomposition", "Decomposition", formatted_dims, align="center"),
 ])
 
