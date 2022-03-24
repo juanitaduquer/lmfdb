@@ -118,10 +118,7 @@ class WebModCurve(WebObj):
 
     @lazy_attribute
     def title(self):
-        if self.name:
-            return f"Shimura curve {name_to_latex(self.name)}"
-        else:
-            return f"Shimura curve {self.label}"
+        return f"Shimura curve {self.label}"
 
     # @lazy_attribute
     # def formatted_dims(self):
@@ -130,10 +127,10 @@ class WebModCurve(WebObj):
     # @lazy_attribute
     # def formatted_newforms(self):
     #     return formatted_newforms(self.newforms)
-
-    @lazy_attribute
-    def latexed_plane_model(self):
-        return teXify_pol(self.plane_model)
+    # 
+    # @lazy_attribute
+    # def latexed_plane_model(self):
+    #     return teXify_pol(self.plane_model)
 
     # @lazy_attribute
     # def obstruction_primes(self):
