@@ -284,7 +284,7 @@ class ShimCurveSearchArray(SearchArray):
         ]
 
         self.refine_array = [
-            [discriminant, level, genus]
+            [disc, level, genus]
         ]
 
     sort_knowl = "shimcurve.sort_order"
