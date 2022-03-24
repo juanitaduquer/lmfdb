@@ -40,7 +40,7 @@ from lmfdb.backend.encoding import Json
 from lmfdb.shimura_curves import shimcurve_page
 from lmfdb.shimura_curves.web_curve import get_bread, canonicalize_name, name_to_latex, factored_conductor, formatted_dims
 
-LABEL = re.compile(r"X?(_0)?(\d+\,\d+)")
+LABEL = re.compile(r"D206N1[1,206]")
 # LABEL_RE = re.compile(r"\d+\.\d+\.\d+\.\d+")
 # CP_LABEL_RE = re.compile(r"\d+[A-Z]\d+")
 # SZ_LABEL_RE = re.compile(r"\d+[A-Z]\d+-\d+[a-z]")
