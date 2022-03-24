@@ -114,7 +114,7 @@ def by_label(label):
         bread=curve.bread,
         title=curve.title,
         downloads=curve.downloads,
-        KNOWL_ID=f"shimcurve.{label}",
+        # KNOWL_ID=f"shimcurve.{label}",
         learnmore=learnmore_list(),
     )
 
@@ -151,7 +151,7 @@ def shimcurve_jump(info):
     #         flash_error("There is no modular curve in the database with name %s", label)
     #         return redirect(url_for(".index"))
     #     label = lmfdb_label
-    # return redirect(url_for_shimcurve_label(label))
+    return redirect(url_for_shimcurve_label(label))
 
 shimcurve_columns = SearchColumns([
     LinkCol("label", "shimcurve.label", "Label", url_for_shimcurve_label, default=True),
