@@ -254,7 +254,7 @@ class ShimCurveSearchArray(SearchArray):
                      ],
             min_width=85)
         discriminant = TextBox(
-            name="discriminant",
+            name="disc",
             knowl="shimcurve.disc",
             label="Discriminant",
             example="1",
@@ -278,7 +278,7 @@ class ShimCurveSearchArray(SearchArray):
         count = CountBox()
 
         self.browse_array = [
-            [discriminant, level],
+            [discr, level],
             [genus],
             [count]
         ]
