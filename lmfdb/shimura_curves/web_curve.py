@@ -128,9 +128,9 @@ class WebShimCurve(WebObj):
     # def formatted_newforms(self):
     #     return formatted_newforms(self.newforms)
     #
-    # @lazy_attribute
-    # def latexed_plane_model(self):
-    #     return teXify_pol(self.plane_model)
+    @lazy_attribute
+    def latexed_plane_model(self):
+         return teXify_pol(self.model)
 
     # @lazy_attribute
     # def obstruction_primes(self):

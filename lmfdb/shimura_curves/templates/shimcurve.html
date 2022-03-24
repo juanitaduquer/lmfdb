@@ -6,16 +6,14 @@
 <h2> {{ 'Invariants' }} </h2>
 <table>
 <!--We are missing KNOWLs-->
-  <tr><td>{{ "Discriminant" }}:</td><td> ${{ curve.discriminant }}$ </td></tr>
+  <tr><td>{{ "Discriminant" }}:</td><td> ${{ curve.disc }}$ </td></tr>
   <tr><td>{{ "Level" }}:</td><td> ${{ curve.level }}$ </td></tr>
   <tr><td>{{ 'Genus' }}:</td><td> ${{ curve.genus }}$ </td></tr>
-  <tr><td>{{ 'Analytic rank' }}:</td><td> ${{ curve.rank }}$ </td></tr>
-  <tr><td>{{ '$K$-gonality'}}:</td><td> ${{ curve.gonality if curve.gonality > 0 else "%s \\le \\gamma \\le %s"%(curve.gonality_bounds[0],curve.gonality_bounds[1]) }}$ </td></tr>
 </table>
 
-{% if curve.plane_model %}
+{% if curve.model %}
 <h2> {{ 'Plane model') }} </h2>
-{% if curve.plane_model == "P1" %}
+{% if curve.model == "P1" %}
 <p>$\mathbb{P}^1$</p>
 {% else %}
 <p>${{curve.latexed_plane_model}} = 0$</p>
