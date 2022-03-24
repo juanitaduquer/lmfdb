@@ -157,7 +157,7 @@ shimcurve_columns = SearchColumns([
     LinkCol("label", "shimcurve.label", "Label", url_for_shimcurve_label, default=True),
     ProcessedCol("name", "shimcurve.name", "Name", lambda s: name_to_latex(s) if s else "", align="center", default=True),
     MathCol("level", "shimcurve.level", "Level", default=True),
-    MathCol("index", "shimcurve.index", "Index", default=True),
+    # MathCol("index", "shimcurve.index", "Index", default=True),
     MathCol("genus", "shimcurve.genus", "Genus", default=True),
     # ProcessedCol("rank", "shimcurve.rank", "Rank", lambda r: "" if r is None else r, default=lambda info: info.get("rank") or info.get("genus_minus_rank"), align="center", mathmode=True),
     # ProcessedCol("gonality_bounds", "shimcurve.gonality", "$K$-gonality", lambda b: r'$%s$'%(b[0]) if b[0] == b[1] else r'$%s \le \gamma \le %s$'%(b[0],b[1]), align="center", default=True),
@@ -318,7 +318,7 @@ class ShimCurve_stats(StatsDisplay):
         )
 
     table = db.shimura_curves
-    baseurl_func = ".index"
+    baseurl_func = ".level"
     buckets = {'level': ['1-4', '5-8', '9-12', '13-16', '17-20', '21-'],
                'genus': ['0', '1', '2', '3', '4-6', '7-20', '21-100', '101-'],
                'rank': ['0', '1', '2', '3', '4-6', '7-20', '21-100', '101-'],
@@ -415,120 +415,107 @@ class shimcurve_download(Downloader):
             return abort(404, "Label not found: %s" % label)
         if lang == "magma":
             s += "// Magma code for Shimura curve with label %s\n\n" % label
-            if rec['name'] or rec['CPlabel'] or rec['Slabel'] or rec['SZlabel'] or rec['RZBlabel']:
-                s += "// other names and/or labels\n"
-                if rec['name']:
-                    s += "// Curve name: %s\n" % rec['name']
-                if rec['CPlabel']:
-                    s += "// Cummins-Pauli label: %s\n" % rec['CPlabel']
-                if rec['RZBlabel']:
-                    s += "// Rouse-Zureick-Brown label: %s\n" % rec['RZBlabel']
-                if rec['Slabel']:
-                    s += "// Sutherland label: %s\n" % rec['Slabel']
-                if rec['SZlabel']:
-                    s += "// Sutherland-Zywina label: %s\n" % rec['SZlabel']
-            s += "\n// Group data\n"
             s += "level := %s;\n" % rec['level']
             s += "// Elements that, together with Gamma(level), generate the group\n"
-            s += "gens := %s;\n" % rec['generators']
-            s += "// Group contains -1?\n"
-            s += "ContainsMinus1 := %s;\n" % rec['contains_negative_one']
-            s += "// Index in Gamma(1)\n"
-            s += "index := %s;\n" % rec['index']
-            s += "\n// Curve data\n"
-            s += "conductor := %s;\n" % rec['conductor']
-            s += "bad_primes := %s;\n" % rec['bad_primes']
-            s += "// Make plane model, if computed;\n"
-            if rec["plane_model"]:
-                s += "QQ := Rationals();\n"
-                s += "R<X,Y,Z> := PolynomialRing(QQ,3);\n"
-                s += "XX := Curve(AffineSpace(R), %s);\n" % rec['plane_model']
-            s += "// Genus\n"
-            s += "g := %s;\n" % rec['genus']
-            s += "// Rank\n"
-            s += "r := %s\n" % rec['rank']
-            if rec['gonality'] != -1:
-                s += "// Exact gonality known\n"
-                s += "gamma := %s;\n" % rec['gonality']
-            else:
-                s += "// Exact gonality unknown, but contained in following interval\n"
-                s += "gamma_int := %s;\n" % rec['gonality_bounds']
-            s += "\n// Modular data\n"
-            s += "// Number of cusps\n"
-            s += "Ncusps := %s\n" % rec['cusps']
-            s += "// Number of rational cusps\n"
-            s += "Nrat_cusps := %s\n" % rec['cusps']
-            if rec['jmap']:
-                s += "// Map to j-line\n"
-                # TODO: I think this is relative map; should compose to get map to PP1
-                s += "jmap := %s;\n" % rec['jmap']
-            if rec['Emap']:
-                s += "// Map to j-line\n"
-                s += "Emap := %s;\n" % rec['Emap']
-            s += "// CM discriminants\n"
-            s += "CM_discs := %s;\n" % rec['cm_discriminants']
-            s += "// groups containing given group, corresponding to curves covered by given curve\n"
-            s += "covers := %s;\n" % rec['parents']
+            # s += "gens := %s;\n" % rec['generators']
+            # s += "// Group contains -1?\n"
+            # s += "ContainsMinus1 := %s;\n" % rec['contains_negative_one']
+            # s += "// Index in Gamma(1)\n"
+            # s += "index := %s;\n" % rec['index']
+            # s += "\n// Curve data\n"
+            # s += "conductor := %s;\n" % rec['conductor']
+            # s += "bad_primes := %s;\n" % rec['bad_primes']
+            # s += "// Make plane model, if computed;\n"
+            # if rec["plane_model"]:
+            #     s += "QQ := Rationals();\n"
+            #     s += "R<X,Y,Z> := PolynomialRing(QQ,3);\n"
+            #     s += "XX := Curve(AffineSpace(R), %s);\n" % rec['plane_model']
+            # s += "// Genus\n"
+            # s += "g := %s;\n" % rec['genus']
+            # s += "// Rank\n"
+            # s += "r := %s\n" % rec['rank']
+            # if rec['gonality'] != -1:
+            #     s += "// Exact gonality known\n"
+            #     s += "gamma := %s;\n" % rec['gonality']
+            # else:
+            #     s += "// Exact gonality unknown, but contained in following interval\n"
+            #     s += "gamma_int := %s;\n" % rec['gonality_bounds']
+            # s += "\n// Modular data\n"
+            # s += "// Number of cusps\n"
+            # s += "Ncusps := %s\n" % rec['cusps']
+            # s += "// Number of rational cusps\n"
+            # s += "Nrat_cusps := %s\n" % rec['cusps']
+            # if rec['jmap']:
+            #     s += "// Map to j-line\n"
+            #     # TODO: I think this is relative map; should compose to get map to PP1
+            #     s += "jmap := %s;\n" % rec['jmap']
+            # if rec['Emap']:
+            #     s += "// Map to j-line\n"
+            #     s += "Emap := %s;\n" % rec['Emap']
+            # s += "// CM discriminants\n"
+            # s += "CM_discs := %s;\n" % rec['cm_discriminants']
+            # s += "// groups containing given group, corresponding to curves covered by given curve\n"
+            # s += "covers := %s;\n" % rec['parents']
             return(self._wrap(s, label, lang=lang))
 
         # once more with feeling
         elif lang == "sage":
             s += "# Sage code for modular curve with label %s\n\n" % label
-
-            if rec['name'] or rec['CPlabel'] or rec['Slabel'] or rec['SZlabel'] or rec['RZBlabel']:
-                s += "# other names and/or labels\n"
-                if rec['name']:
-                    s += "# Curve name: %s\n" % rec['name']
-                if rec['CPlabel']:
-                    s += "# Cummins-Pauli label: %s\n" % rec['CPlabel']
-                if rec['RZBlabel']:
-                    s += "# Rouse-Zureick-Brown label: %s\n" % rec['RZBlabel']
-                if rec['Slabel']:
-                    s += "# Sutherland label: %s\n" % rec['Slabel']
-                if rec['SZlabel']:
-                    s += "# Sutherland-Zywina label: %s\n" % rec['SZlabel']
-            s += "\n# Group data\n"
-            s += "level = %s\n" % rec['level']
-            s += "# Elements that, together with Gamma(level), generate the group\n"
-            s += "gens = %s\n" % rec['generators']
-            s += "# Group contains -1?\n"
-            s += "ContainsMinus1 = %s\n" % rec['contains_negative_one']
-            s += "# Index in Gamma(1)\n"
-            s += "index = %s\n" % rec['index']
-            s += "\n# Curve data\n"
-            s += "conductor = %s\n" % rec['conductor']
-            s += "bad_primes = %s\n" % rec['bad_primes']
-            s += "# Make plane model, if computed\n"
-            if rec["plane_model"]:
-                s += "QQ = Rationals()\n"
-                s += "R<X,Y,Z> = PolynomialRing(QQ,3)\n"
-                s += "XX = Curve(AffineSpace(R), %s)\n" % rec['plane_model']
-            s += "# Genus\n"
-            s += "g = %s\n" % rec['genus']
-            s += "# Rank\n"
-            s += "r = %s\n" % rec['rank']
-            if rec['gonality'] != -1:
-                s += "# Exact gonality known\n"
-                s += "gamma = %s\n" % rec['gonality']
-            else:
-                s += "# Exact gonality unknown, but contained in following interval\n"
-                s += "gamma_int = %s\n" % rec['gonality_bounds']
-            s += "\n# Modular data\n"
-            s += "# Number of cusps\n"
-            s += "Ncusps = %s\n" % rec['cusps']
-            s += "# Number of rational cusps\n"
-            s += "Nrat_cusps = %s\n" % rec['cusps']
-            if rec['jmap']:
-                s += "# Map to j-line\n"
-                # TODO: I think this is relative map; should compose to get map to PP1
-                s += "jmap = %s\n" % rec['jmap']
-            if rec['Emap']:
-                s += "# Map to j-line\n"
-                s += "Emap = %s\n" % rec['Emap']
-            s += "# CM discriminants\n"
-            s += "CM_discs = %s\n" % rec['cm_discriminants']
-            s += "# groups containing given group, corresponding to curves covered by given curve\n"
-            s += "covers = %s\n" % rec['parents']
+            #
+            # if rec['name'] or rec['CPlabel'] or rec['Slabel'] or rec['SZlabel'] or rec['RZBlabel']:
+            #     s += "# other names and/or labels\n"
+            #     if rec['name']:
+            #         s += "# Curve name: %s\n" % rec['name']
+            #     if rec['CPlabel']:
+            #         s += "# Cummins-Pauli label: %s\n" % rec['CPlabel']
+            #     if rec['RZBlabel']:
+            #         s += "# Rouse-Zureick-Brown label: %s\n" % rec['RZBlabel']
+            #     if rec['Slabel']:
+            #         s += "# Sutherland label: %s\n" % rec['Slabel']
+            #     if rec['SZlabel']:
+            #         s += "# Sutherland-Zywina label: %s\n" % rec['SZlabel']
+            # s += "\n# Group data\n"
+            # s += "level = %s\n" % rec['level']
+            # s += "# Elements that, together with Gamma(level), generate the group\n"
+            # s += "gens = %s\n" % rec['generators']
+            # s += "# Group contains -1?\n"
+            # s += "ContainsMinus1 = %s\n" % rec['contains_negative_one']
+            # s += "# Index in Gamma(1)\n"
+            # s += "index = %s\n" % rec['index']
+            # s += "\n# Curve data\n"
+            # s += "conductor = %s\n" % rec['conductor']
+            # s += "bad_primes = %s\n" % rec['bad_primes']
+            # s += "# Make plane model, if computed\n"
+            # if rec["plane_model"]:
+            #     s += "QQ = Rationals()\n"
+            #     s += "R<X,Y,Z> = PolynomialRing(QQ,3)\n"
+            #     s += "XX = Curve(AffineSpace(R), %s)\n" % rec['plane_model']
+            # s += "# Genus\n"
+            # s += "g = %s\n" % rec['genus']
+            # s += "# Rank\n"
+            # s += "r = %s\n" % rec['rank']
+            # if rec['gonality'] != -1:
+            #     s += "# Exact gonality known\n"
+            #     s += "gamma = %s\n" % rec['gonality']
+            # else:
+            #     s += "# Exact gonality unknown, but contained in following interval\n"
+            #     s += "gamma_int = %s\n" % rec['gonality_bounds']
+            # s += "\n# Modular data\n"
+            # s += "# Number of cusps\n"
+            # s += "Ncusps = %s\n" % rec['cusps']
+            # s += "# Number of rational cusps\n"
+            # s += "Nrat_cusps = %s\n" % rec['cusps']
+            # if rec['jmap']:
+            #     s += "# Map to j-line\n"
+            #     # TODO: I think this is relative map; should compose to get map to PP1
+            #     s += "jmap = %s\n" % rec['jmap']
+            # if rec['Emap']:
+            #     s += "# Map to j-line\n"
+            #     s += "Emap = %s\n" % rec['Emap']
+            # s += "# CM discriminants\n"
+            # s += "CM_discs = %s\n" % rec['cm_discriminants']
+            # s += "# groups containing given group, corresponding to curves covered by given curve\n"
+            # s += "covers = %s\n" % rec['parents']
             return(self._wrap(s, label, lang=lang))
         if lang == "text":
             data = db.shimura_curves.lookup(label)
