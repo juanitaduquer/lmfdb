@@ -84,7 +84,7 @@ def difference(A,B):
             C.pop(C.index(f))
     return C
 
-class WebModCurve(WebObj):
+class WebShimCurve(WebObj):
     table = db.shimura_curves
 
     @lazy_attribute
@@ -127,7 +127,7 @@ class WebModCurve(WebObj):
     # @lazy_attribute
     # def formatted_newforms(self):
     #     return formatted_newforms(self.newforms)
-    # 
+    #
     # @lazy_attribute
     # def latexed_plane_model(self):
     #     return teXify_pol(self.plane_model)
