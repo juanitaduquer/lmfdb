@@ -123,13 +123,13 @@ class WebModCurve(WebObj):
         else:
             return f"Shimura curve {self.label}"
 
-    @lazy_attribute
-    def formatted_dims(self):
-        return formatted_dims(self.dims)
-
-    @lazy_attribute
-    def formatted_newforms(self):
-        return formatted_newforms(self.newforms)
+    # @lazy_attribute
+    # def formatted_dims(self):
+    #     return formatted_dims(self.dims)
+    #
+    # @lazy_attribute
+    # def formatted_newforms(self):
+    #     return formatted_newforms(self.newforms)
 
     @lazy_attribute
     def latexed_plane_model(self):

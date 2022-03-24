@@ -112,8 +112,7 @@
     - title: Calabi-Yau varieties
       status: future
     - title: Shimura varieties
-      status: beta
-      url_for: "shimura.index"
+      status: future
       colspan: onecolumn
     - title: Abelian varieties over $\F_{q}$
       url_for: "abvarfq.abelian_varieties"
@@ -121,6 +120,10 @@
     - title: Belyi maps
       status: beta
       url_for: "belyi.index"
+      colspan: onecolumn
+    - title: Shimura curves
+      status: beta
+      url_for: "shimcurve.index"
       colspan: onecolumn
 
 5Fields:
