@@ -121,6 +121,10 @@
       status: beta
       url_for: "belyi.index"
       colspan: onecolumn
+    - title: Shimura curves
+      status: beta
+      url_for: "shimura_curves.index"
+      colspan: onecolumn
 
 
 5Fields:
