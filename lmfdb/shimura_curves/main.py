@@ -83,7 +83,7 @@ def index_Q():
 @shimcurve_page.route("/Q/random/")
 @redirect_no_cache
 def random_curve():
-    label = db.shimura.random()
+    label = db.shimura_curves.random()
     return url_for_shimcurve_label(label)
 
 # @shimcurve_page.route("/interesting")
@@ -173,7 +173,7 @@ shimcurve_columns = SearchColumns([
 ])
 
 @search_wrap(
-    table=db.shimura,
+    table=db.shimura_curves,
     title="Shimura curve search results",
     err_title="Shimura curves search input error",
     # shortcuts={"jump": shimcurve_jump},
@@ -226,7 +226,7 @@ def shimcurve_search(info, query):
     # #parse_element_of(info, query, "covered_by", qfield="children")
     # if "covered_by" in info:
     #     # sort of hacky
-    #     parents = db.shimura.lookup(info["covered_by"], "parents")
+    #     parents = db.shimura_curves.lookup(info["covered_by"], "parents")
     #     if parents is None:
     #         msg = "%s not the label of a modular curve in the database"
     #         flash_error(msg, info["covered_by"])
@@ -300,8 +300,8 @@ class ShimCurveSearchArray(SearchArray):
 
 class ShimCurve_stats(StatsDisplay):
     def __init__(self):
-        self.ncurves = comma(db.shimura.count())
-        self.max_level = db.shimura.max("level")
+        self.ncurves = comma(db.shimura_curves.count())
+        self.max_level = db.shimura_curves.max("level")
 
     @property
     def short_summary(self):
@@ -317,7 +317,7 @@ class ShimCurve_stats(StatsDisplay):
             fr'The database currently contains {self.ncurves} {shimcurve_knowl} of level $N\le {self.max_level}$.'
         )
 
-    table = db.shimura
+    table = db.shimura_curves
     baseurl_func = ".index"
     buckets = {'level': ['1-4', '5-8', '9-12', '13-16', '17-20', '21-'],
                'genus': ['0', '1', '2', '3', '4-6', '7-20', '21-100', '101-'],
@@ -377,7 +377,7 @@ def labels_page():
                            title=t, bread=bread, learnmore=learnmore_list_remove('labels'))
 
 class shimcurve_download(Downloader):
-    table = db.shimura
+    table = db.shimura_curves
     title = "Shimura curves"
     #columns =
     #data_format = []
@@ -410,7 +410,7 @@ class shimcurve_download(Downloader):
 
     def download_modular_curve(self, label, lang):
         s = ""
-        rec = db.shimura.lookup(label)
+        rec = db.shimura_curves.lookup(label)
         if rec is None:
             return abort(404, "Label not found: %s" % label)
         if lang == "magma":
@@ -531,7 +531,7 @@ class shimcurve_download(Downloader):
             s += "covers = %s\n" % rec['parents']
             return(self._wrap(s, label, lang=lang))
         if lang == "text":
-            data = db.shimura.lookup(label)
+            data = db.shimura_curves.lookup(label)
             if data is None:
                 return abort(404, "Label not found: %s" % label)
             return self._wrap(Json.dumps(data),

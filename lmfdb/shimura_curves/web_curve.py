@@ -85,7 +85,7 @@ def difference(A,B):
     return C
 
 class WebModCurve(WebObj):
-    table = db.shimura
+    table = db.shimura_curves
 
     @lazy_attribute
     def properties(self):
