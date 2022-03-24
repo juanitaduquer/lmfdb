@@ -278,7 +278,7 @@ class ShimCurveSearchArray(SearchArray):
         count = CountBox()
 
         self.browse_array = [
-            [discr, level],
+            [disc, level],
             [genus],
             [count]
         ]
