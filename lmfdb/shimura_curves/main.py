@@ -261,7 +261,7 @@ class ShimCurveSearchArray(SearchArray):
             example="1",
             example_span="0, 2-3",
         )
-        level = TextBoxWithSelect(
+        level = TextBox(
             name="level",
             knowl="shimcurve.level",
             label="Level",
