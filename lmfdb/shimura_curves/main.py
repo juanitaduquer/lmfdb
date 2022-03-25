@@ -292,7 +292,7 @@ class ShimCurveSearchArray(SearchArray):
     sorts = [
         ("", "level", ["level", "genus", "label"]),
         ("genus", "genus", ["genus", "label"]),
-        ("discriminant", "discriminant", ["discriminant", "genus", "label"])
+        ("discriminant", "discriminant", ["disc", "genus", "label"])
     ]
     null_column_explanations = {
         'simple': False,
