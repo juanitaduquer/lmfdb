@@ -8,11 +8,12 @@
 <h2> Browse </h2>
 
 <p>
-  By {{'level'}}:
+  By {{KNOWL("sh.level", "level")}}:
   {% for rnge in info.level_list %}
     <a href="?level={{rnge}}">{{rnge}}</a>&nbsp;
   {% endfor %}
 </p>
+
 <p>
   By {{'genus'}}:
   {% for rnge in info.genus_list %}
